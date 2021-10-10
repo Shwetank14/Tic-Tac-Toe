@@ -2,7 +2,6 @@ package com.example.tic_tac_toe
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,27 +13,27 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
     // Current Player status
     // Shows which player is currently is going for its move
     // Initially playerX will start the game
-    var PLAYER_X = false
-    var PLAYER_Y = true
+    private var playerX = false
+    private var player0 = true
 
     // Player Names
-    lateinit var playerX_Name: String
-    lateinit var playerY_Name: String
+    private lateinit var playerXName: String
+    private lateinit var player0Name: String
 
     // Count of Records of each players win
-    var playerXWinCount = 0
-    var playerYWinCount = 0
+    private var playerXWinCount = 0
+    private var player0WinCount = 0
 
 
     // Total Number of moves performed on the board
-    var totalMoves = 0
+    private var totalMoves = 0
 
 
     // Logic Board
-    var boardStatus = Array(3){IntArray(3)}
+    private var boardStatus = Array(3){IntArray(3)}
 
     // Display board
-    lateinit var board : Array<Array<Button>>
+    private lateinit var board : Array<Array<Button>>
 
 
 
@@ -59,7 +58,7 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         val resetScore = findViewById<Button>(R.id.resetScore)
         // ----------------------------------------------------------------------------------------------------------
 
-        // Text View ID's
+        // Text View IDs
         // Getting the names of the players from the home page
         val player1 = intent.getStringExtra("Player1")
         val player2 = intent.getStringExtra("Player2")
@@ -72,13 +71,13 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         player1TextView.text = "$player1: "
         player2TextView.text = "$player2: "
 
-        playerX_Name = player1.toString()
-        playerY_Name = player2.toString()
+        playerXName = player1.toString()
+        player0Name = player2.toString()
 
 
         // Current Player Text
         val currentPlayerText = findViewById<TextView>(R.id.mainTextView)
-        currentPlayerText.text = playerX_Name
+        currentPlayerText.text = playerXName
 
 
         // board Processing -----------------------------------------------------------------
@@ -119,10 +118,10 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         // Resets the players score as wel as the board
         resetScore.setOnClickListener {
             playerXWinCount = 0
-            playerYWinCount = 0
+            player0WinCount = 0
             totalMoves = 0
-            updateScores(playerX_Name)
-            updateScores(playerY_Name)
+            updateScores(playerXName)
+            updateScores(player0Name)
             initializeBoard()
         }
 
@@ -146,17 +145,17 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         // Changing the state of player after each button press
         // at each press on Player state becomes true and others state becomes false
         // the player having the true state will perform its move
-        PLAYER_X = !PLAYER_X
-        PLAYER_Y = !PLAYER_Y
+        playerX = !playerX
+        player0 = !player0
 
         // Updating the current Player text
-        val boardText = if (!PLAYER_X){
-            playerX_Name
+        val boardText = if (!playerX){
+            playerXName
         } else{
-            playerY_Name
+            player0Name
         }
         val currentPlayerText = findViewById<TextView>(R.id.mainTextView)
-        currentPlayerText.text = boardText.toString()
+        currentPlayerText.text = boardText
 
 
         // Getting the Button id to perform the task on
@@ -184,14 +183,14 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
     private fun updateValue(row: Int, col: Int) {
         val currentVal: Int
         val boardText: String
-        if (PLAYER_X){
+        if (playerX){
             boardText = "X"
             currentVal = 1
         } else{
             boardText = "0"
             currentVal = 0
         }
-        board[row][col].text = boardText.toString()
+        board[row][col].text = boardText
         board[row][col].isEnabled = false
 
         boardStatus[row][col] = currentVal
@@ -274,15 +273,13 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         val currWinner: String
         if(playerValue == 1) {
             playerXWinCount += 1
-            currWinner = playerX_Name
-            updateScores(currWinner)
+            currWinner = playerXName
         }
         else{
-            playerYWinCount += 1
-            currWinner = playerY_Name
-            updateScores(currWinner)
+            player0WinCount += 1
+            currWinner = player0Name
         }
-
+        updateScores(currWinner)
         Toast.makeText(this, "$currWinner wins the game", Toast.LENGTH_SHORT).show()
 
     }
@@ -291,16 +288,16 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
     private fun updateScores(currWinner: String) {
         val score1 = findViewById<TextView>(R.id.score1tv)
         val score2 = findViewById<TextView>(R.id.score2tv)
-        if(currWinner == playerX_Name){
+        if(currWinner == playerXName){
             score1.text = playerXWinCount.toString()
         }
-        else if(currWinner == playerY_Name){
-            score2.text = playerYWinCount.toString()
+        else if(currWinner == player0Name){
+            score2.text = player0WinCount.toString()
         }
     }
 
     // If anyone has won the game this method will disable
-    // the remaining empty grid cells
+    // the remaining empty grid cells buttons
     private fun disableButton() {
         for(i in board){
             for(button in i){

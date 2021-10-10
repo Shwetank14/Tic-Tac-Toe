@@ -37,7 +37,7 @@
             android:fontFamily="@font/francois_one"
             android:padding="2sp"
             android:text="Player 1"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/holo_blue_bright"
             android:textSize="35sp" />
 
     </LinearLayout>
@@ -258,7 +258,7 @@
             android:text="RESET BOARD"
             android:layout_marginRight="10sp"
             android:padding="5dp"
-            android:background="#1a1a1a"
+            android:background="#0E2343"
             android:textColor="#89DEEC"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
