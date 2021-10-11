@@ -8,7 +8,7 @@
  
  <br>
           Gameplay
- <br>
+ 
  <img src="https://github.com/Shwetank14/Tic-Tac-Toe/blob/master/screens/Gameplay.gif" width="250" height="500" />
  
  </pre>
