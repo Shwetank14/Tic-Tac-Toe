@@ -62,6 +62,7 @@
         android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:text="Start Game"
+        android:fontFamily="@font/concert_one"
         android:background="#0d1137"
         android:textColor="#89DEEC"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -52,6 +52,7 @@
         <LinearLayout
             android:layout_width="200sp"
             android:layout_height="40sp"
+            android:layout_marginLeft="20dp"
             android:orientation="horizontal"
             android:layout_marginBottom="10sp">
 
@@ -59,9 +60,8 @@
                 android:id="@+id/tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="25sp"
-                android:fontFamily="@font/freckle_face"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/concert_one"
                 android:text="Player X: "
                 android:textColor="#5597BC"
                 android:textSize="30sp" />
@@ -70,7 +70,7 @@
                 android:id="@+id/score1tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/freckle_face"
+                android:fontFamily="@font/concert_one"
                 android:text="0"
                 android:textColor="#5597BC"
                 android:textSize="30sp" />
@@ -91,7 +91,7 @@
                     android:layout_gravity="left"
                     android:layout_marginRight="3dp"
                     android:layout_marginLeft="25sp"
-                    android:fontFamily="@font/freckle_face"
+                    android:fontFamily="@font/concert_one"
                     android:text="Player X:"
                     android:textColor="#5597BC"
                     android:textSize="30sp" />
@@ -100,7 +100,7 @@
                     android:id="@+id/score2tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/freckle_face"
+                    android:fontFamily="@font/concert_one"
                     android:text="0"
                     android:textColor="#5597BC"
                     android:textSize="30sp" />
@@ -256,6 +256,7 @@
             android:id="@+id/reset"
             android:textSize="15sp"
             android:text="RESET BOARD"
+            android:fontFamily="@font/concert_one"
             android:layout_marginRight="10sp"
             android:padding="5dp"
             android:background="#0E2343"
@@ -268,8 +269,9 @@
         <Button
             android:id="@+id/home"
             android:textSize="15sp"
-            android:background="#1a1a1a"
+            android:background="#0E2343"
             android:padding="5dp"
+            android:fontFamily="@font/concert_one"
             android:text="HOME"
             android:layout_marginRight="10sp"
             android:textColor="#89DEEC"
@@ -282,9 +284,10 @@
             android:layout_marginRight="30dp"
             android:textSize="14sp"
             android:padding="5dp"
+            android:fontFamily="@font/concert_one"
             android:text="RESET SCORES"
             android:textColor="#89DEEC"
-            android:background="#1a1a1a"
+            android:background="#0E2343"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"

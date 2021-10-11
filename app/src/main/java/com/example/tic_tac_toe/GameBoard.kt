@@ -2,6 +2,7 @@ package com.example.tic_tac_toe
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,8 +14,8 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
     // Current Player status
     // Shows which player is currently is going for its move
     // Initially playerX will start the game
-    private var playerX = false
-    private var player0 = true
+    private var playerX = true
+    private var player0 = false
 
     // Player Names
     private lateinit var playerXName: String
@@ -105,6 +106,8 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         // Reset the board without changing the score
         resetButton.setOnClickListener {
             totalMoves = 0
+            resetButton.setBackgroundColor(Color.parseColor("#0E2343"))
+            resetButton.setTextColor(Color.parseColor("#89DEEC"))
             initializeBoard()
         }
 
@@ -149,7 +152,7 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         player0 = !player0
 
         // Updating the current Player text
-        val boardText = if (!playerX){
+        val boardText = if (playerX){
             playerXName
         } else{
             player0Name
@@ -208,12 +211,14 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
             if(boardStatus[0][0] == 1){
                 disableButton()
                 popOutToast(boardStatus[0][0])
+                return
             }
             else if(boardStatus[0][0] == 0){
                 disableButton()
                 popOutToast(boardStatus[0][0])
+                return
             }
-            return
+
         }
 
         // Anti Diagonal Check
@@ -221,26 +226,29 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
             if(boardStatus[0][2] == 1){
                 disableButton()
                 popOutToast(boardStatus[0][2])
+                return
             }
             else if(boardStatus[0][2] == 0){
                 disableButton()
                 popOutToast(boardStatus[0][2])
+                return
             }
-            return
         }
 
 
         // Row Check
         for(i in 0..2){
-            if(boardStatus[i][0] == boardStatus[i][1]  && boardStatus[i][0] == boardStatus[i][2]){
+            if(boardStatus[i][0] == boardStatus[i][1]  && boardStatus[i][1] == boardStatus[i][2]){
                 if(boardStatus[i][0] == 1){
                     disableButton()
                     popOutToast(boardStatus[i][0])
+                    return
                 }else if(boardStatus[i][0] == 0){
                     disableButton()
                     popOutToast(boardStatus[i][0])
+                    return
                 }
-                return
+
             }
         }
 
@@ -251,18 +259,22 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
                 if(boardStatus[0][i] == 1){
                     disableButton()
                     popOutToast(boardStatus[0][i])
+                    return
 
                 }else if(boardStatus[0][i] == 0){
                     disableButton()
                     popOutToast(boardStatus[0][i])
+                    return
                 }
-                return
             }
         }
 
         // If all boxes filled and No outcome i.e totalMoves has become 9 and no winner is there
-        if(totalMoves >= 9){
+        if(totalMoves == 9){
             Toast.makeText(this,"Game draw please reset the board",Toast.LENGTH_SHORT).show()
+             val rstButton = findViewById<Button>(R.id.reset)
+             rstButton.setBackgroundColor(Color.parseColor("#89DEEC"))
+             rstButton.setTextColor(Color.parseColor("#0E2343"))
         }
     }
 
@@ -281,6 +293,10 @@ class GameBoard : AppCompatActivity(), View.OnClickListener {
         }
         updateScores(currWinner)
         Toast.makeText(this, "$currWinner wins the game", Toast.LENGTH_SHORT).show()
+
+        val rstButton = findViewById<Button>(R.id.reset)
+        rstButton.setBackgroundColor(Color.parseColor("#89DEEC"))
+        rstButton.setTextColor(Color.parseColor("#0E2343"))
 
     }
 
